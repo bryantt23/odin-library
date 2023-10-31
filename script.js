@@ -1,18 +1,28 @@
 let myLibrary = [
-  { title: 'Jane Eyre', author: 'Charlotte Bronte', pages: 300 },
-  { title: 'Jurassic Park', author: 'Michael Crichton', pages: 200 }
+  {
+    title: 'Jane Eyre',
+    author: 'Charlotte Bronte',
+    pages: 300,
+    read: true
+  },
+  {
+    title: 'Jurassic Park',
+    author: 'Michael Crichton',
+    pages: 200,
+    read: false
+  }
 ];
 
 function Book(title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.hasBeenRead = false;
+  this.read = false;
 }
 
-// Book.prototype.toggle = status => {
-//   hasBeenRead = status;
-// };
+Book.prototype.toggle = status => {
+  read = status;
+};
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -26,12 +36,18 @@ function displayBooks() {
   for (const [index, book] of myLibrary.entries()) {
     const li = document.createElement('li');
     li.textContent = `Title: ${book.title} by ${book.author}`;
-    // li.setAttribute('index', index);
     books.appendChild(li);
     const button = document.createElement('button');
     button.innerText = 'Remove';
     button.addEventListener('click', () => removeBook(index));
     li.appendChild(button);
+    const readButton = document.createElement('button');
+    readButton.innerText = book.read ? 'Have read' : 'Have not read';
+    readButton.addEventListener('click', () => {
+      book.read = !book.read;
+      displayBooks();
+    });
+    li.appendChild(readButton);
   }
 }
 
