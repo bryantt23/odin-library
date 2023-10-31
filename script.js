@@ -1,27 +1,17 @@
 let myLibrary = [
-  {
-    title: 'Jane Eyre',
-    author: 'Charlotte Bronte',
-    pages: 300,
-    read: true
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-    pages: 200,
-    read: false
-  }
+  new Book('Jane Eyre', 'Charlotte Bronte', 300, true),
+  new Book('Jurassic Park', 'Michael Crichton', 200)
 ];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read = false) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = false;
+  this.read = read;
 }
 
-Book.prototype.toggle = status => {
-  read = status;
+Book.prototype.toggle = function () {
+  this.read = !this.read;
 };
 
 function addBookToLibrary(book) {
@@ -44,7 +34,7 @@ function displayBooks() {
     const readButton = document.createElement('button');
     readButton.innerText = book.read ? 'Have read' : 'Have not read';
     readButton.addEventListener('click', () => {
-      book.read = !book.read;
+      book.toggle();
       displayBooks();
     });
     li.appendChild(readButton);
