@@ -9,9 +9,29 @@
     <h1>My Library</h1>
     <ul class="books"></ul>
     <form class="the-form">
-      <input type="text" label="title" class="title" placeholder="Title" />
-      <input type="text" label="author" class="author" placeholder="Author" />
-      <input type="number" label="pages" class="pages" placeholder="Pages" />
+      <input
+        type="text"
+        label="title"
+        class="title"
+        placeholder="Title"
+        required
+      />
+      <input
+        type="text"
+        label="author"
+        class="author"
+        placeholder="Author"
+        minlength="2"
+        required
+      />
+      <input
+        type="number"
+        label="pages"
+        class="pages"
+        placeholder="Pages"
+        required
+        min="2"
+      />
       <input type="submit" value="Add book" />
     </form>
     <script src="script.js"></script>
